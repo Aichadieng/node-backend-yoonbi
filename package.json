@@ -1,4 +1,4 @@
-{{
+{
   "name": "api_bus",
   "version": "1.0.0",
   "main": "index.js",
@@ -17,4 +17,3 @@
     "mysql2": "^3.14.1"
   }
 }
-
