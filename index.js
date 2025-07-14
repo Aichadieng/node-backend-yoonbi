@@ -19,12 +19,18 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// 🔗 Connexion MySQL via variables d'environnement
+// ➡️ Ajout debug : afficher variables d'environnement utilisées
+console.log('DB_HOST:', process.env.DB_HOST);
+console.log('DB_USER:', process.env.DB_USER);
+console.log('DB_PASSWORD:', process.env.DB_PASSWORD ? '******' : undefined);
+console.log('DB_NAME:', process.env.DB_NAME);
+
+// 🔗 Connexion MySQL via variables d'environnement, avec fallback sûr
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'test',
 });
 
 connection.connect((err) => {
